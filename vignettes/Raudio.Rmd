@@ -39,3 +39,58 @@ The `audioSample()` function has 4 arguments:\
 * `x`: the numeric vector or matrix that will be used to generate the digitalized audio data. If a vector, then only one channel will be used; if a matrix, then R will set as many channels as rows in the matrix.\
 
 * `rate`: the number of samples taken per second to generate the digital audio file.  As a reference, CDs are usually recorded at 44.1 Hz, which means 44.1 samples are taken every second. Since the length of `x` will define the number of samples, and `rate` will determine the number of samples per second, together `x` and `rate` define the duration of the audio created\
+
+* `bits`: the number indicating what the resolution of the audio is. The more bits used, the better the audio quality. 
+
+* `clip`: a logical value. If true, the imputed integers are forced into a range between -1 and 1.\ 
+
+Once we have our audio data, we can reproduce it with `play()`. This is the S3 method for objects of class `AudioSample` and it only takes as input the data to play.\
+
+We will work through an example to illustrate how to create audio sample objects from integers. We start by creating a numeric vector, `sequence1`, that contains the first 10,000 positive integers, each of them divided by 100.\
+
+```{r}
+sequence1 <- 1:10000 / 100
+```
+
+Now we use `audioSample()` to generate some audio data from our sequence. We set the sample rate to 10000 and the bits to 16. In this case, we won't clip the range of the inputted values. We save the returned object as audio1\
+
+```{r}
+audio1 <- audioSample(x = sequence1, rate = 10000, bits = 16, clip = FALSE)
+```
+
+**COMMENT ON STRUCTURE?**
+```{r}
+str(audio1)
+```
+
+
+As expected, `audio1` is an object of class `AudioSample`.\
+
+```{r}
+class(audio1)
+```
+
+The underlying data type is double, because what we tagged our numeric vector with audio information.\
+
+```{r}
+typeof(audio1)
+```
+
+
+It is worth pointing out that there are methods defined for this class of object that allow the user to check and set the attributes.\
+
+For example:
+```{r}
+#Check bits
+audio1$bit
+
+#Check rate
+audio1$rate
+```
+
+We can now play the audio. Pay attention to the pitch and the duration.
+
+```{r}
+play(audio1)
+```
+
