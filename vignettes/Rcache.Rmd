@@ -15,15 +15,19 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(roeis)
+# library(roeis)
 ```
 
 ## Objective
+As dictated in the [CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html), data used in CRAN packages should not surpass 5MB. The Online Encyclopedia of Integer Sequences (OEIS) database used in the `roeis` package is approximately 71MB when originally downlaoded and when compressed, approximately 28MB. Therefore, it is necessary to explore other options for loading and storing data in the `roeis` package. Caching and memoization provide an efficient means of avoiding having to run large, repetitive, and time-consuming code. 
 
-## What Is CPU Cache?
+This vignette aims to explore caching and memoization via the `R.cache` package.
+
+## What Are Caching and Memoization?
 
 ## `R.cache` Package
 ### Overview
+[R.cache CRAN documentation](https://cran.r-project.org/web/packages/R.cache/index.html)
 
 ### Key Functions
 
