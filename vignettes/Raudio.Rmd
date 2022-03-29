@@ -26,9 +26,9 @@ The purpose of this vignettes is to explain how the audio package can be used to
 library(audio)
 ```
 
-## The Audio Package
+## The `audio` Package
 
-The audio package was designed to interface to audio devices, such as Windows MM or Mac OS, to allow users to record and playback audio. In this vignette we will only refer to some of the functions included in this package, specifically those that create new audio instances. Readers interested in a complete description of the audio package capabilities should look into the [rforge website](http://www.rforge.net/audio/).
+The `audio` package was designed to interface to audio devices, such as Windows MM or Mac OS, to allow users to record and playback audio. In this vignette we will only refer to some of the functions included in this package, specifically those that create new audio instances. Readers interested in a complete description of the audio package capabilities should look into the [rforge website](http://www.rforge.net/audio/).
 
 ## Creating Audio Objects
 
