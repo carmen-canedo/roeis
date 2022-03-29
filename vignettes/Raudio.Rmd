@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 # library(roeis)
 ```
 
-# Objective
+## Objective
 
 The purpose of this vignettes is to explain how the audio package can be used to play sounds from integers. We start by loading the package\
 
@@ -26,11 +26,11 @@ The purpose of this vignettes is to explain how the audio package can be used to
 library(audio)
 ```
 
-# The Audio Package
+## The Audio Package
 
 The audio package was designed to interface to audio devices, such as Windows MM or Mac OS, to allow users to record and playback audio. In this vignette we will only refer to some of the functions included in this package, specifically those that create new audio instances. Readers interested in a complete description of the audio package capabilities should look into the [rforge website](http://www.rforge.net/audio/).
 
-# Creating Audio Objects
+## Creating Audio Objects
 
 To create audio objects from a series of integers we will use the function `audioSample()`. This is a constructor that takes in numeric vectors or matrices, marks them with audio information and returns objects of the S3 class `audioSample`. As we will see later on, there are S3 methods to play audio from objects of this class.\
 
@@ -38,7 +38,7 @@ The `audioSample()` function has 4 arguments:\
 
 * `x`: the numeric vector or matrix that will be used to generate the digitalized audio data. If a vector, then only one channel will be used; if a matrix, then R will set as many channels as rows in the matrix.\
 
-* `rate`: the number of samples taken per second to generate the digital audio file.  As a reference, CDs are usually recorded at 44.1 Hz, which means 44.1 samples are taken every second. Since the length of `x` will define the number of samples, and `rate` will determine the number of samples per second, together `x` and `rate` define the duration of the audio created\
+* `rate`: the number of samples taken per second to generate the digital audio file.  As a reference, CDs are usually recorded at 44.1 kHz, which means 44,100 samples are taken every second. Since the length of `x` will define the number of samples, and `rate` will determine the number of samples per second, together `x` and `rate` define the duration of the audio created\
 
 * `bits`: the number indicating what the resolution of the audio is. The more bits used, the better the audio quality. 
 
@@ -120,3 +120,44 @@ play(audio3)
 ```
 
 As expected, we obtained a higher pitch but shorter sound.\
+
+## Excercise 1
+1a. Create a sequence of 5000 numbers with a constant increment, that starts at -1 and ends at 1. Save it as `NumericSequence`\
+```{r, echo=FALSE}
+NumericSequence <- seq(from = -1, to = 1, length.out = 5000)
+```
+
+1b. Use this vector and the `audioSample()` function to create an audio sample. Save it as `SequenceAudio`. Set the rate to 5,000 and the bits to 16. Play `SequenceAudio` and describe how it sounds.\
+
+```{r, echo=FALSE}
+SequenceAudio <- audioSample(NumericSequence, rate = 5000, bits = 16)
+```
+ 
+It should be something similar to this\
+```{r}
+play(SequenceAudio)
+```
+
+1c. Create a second audio sample object `SequenceAudio2` that, when reproduced, lasts longer and has a lower pitch than `SequenceAudio`. Play it. 
+
+```{r, echo=FALSE}
+SequenceAudio2 <- audioSample(NumericSequence, rate = 2500, bits = 16)
+```
+
+It should sound similar to this.\
+```{r}
+play(SequenceAudio2)
+```
+
+## Exercise 2
+Generate an audio sample object with two channels (for stereo). Remember how the structure of the imputed numeric object affects the number of channels.\
+
+```{r, echo=FALSE}
+stereo <- audioSample(matrix(c(sin(1:10000/10), 1:10000), nrow = 2), rate = 8000, bits = 16)
+```
+
+Here is an example:\
+
+```{r}
+play(stereo)
+```
