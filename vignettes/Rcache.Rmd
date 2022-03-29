@@ -26,14 +26,48 @@ This vignette aims to explore caching and memoization via the `R.cache` package.
 ## What Are Caching and Memoization?
 
 ## `R.cache` Package
+Let's load the `R.cache` library.
+```{r}
+library(R.cache)
+```
+
+
 ### Overview
 [R.cache CRAN documentation](https://cran.r-project.org/web/packages/R.cache/index.html)
 
 ### Key Functions
+`R.cache` contains seven functions:
+
+* `addMemoization()`
+* `evalWithMemoization()`
+* `getCacheRootPath()`
+* `loadCache()`
+* `memoizedCall()`
+* `saveCache()`
+* `setCacheRootPath()`
+
+For the purpose of this project, the two functions we will explore are `saveCache()` and `loadCache()`.
 
 ## Examples
-### Download Data
+Let's take a look a some real-world data. Beginning January 21, 2020, The New York Times (NYT) has collected data on COVID cases in the United States and across the world. Current coverage of the pandemic can be viewed [on the NYT website](https://www.nytimes.com/interactive/2021/us/covid-cases.html) and live updates of their datasets can be accessed via their [COVID 19 Data Github Repo](https://github.com/nytimes/covid-19-data). 
 
-### Implement Cached Data
+In order to practice loading in a dataset that is larger than 5MB and caching it, we will use the `us-counties-2022.csv` that can be accessed [here](https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-counties-2022.csv).
+
+### Download Data via `saveCache()`
+```{r}
+# key <- read.csv("~/us-counties-2022.csv")
+# 
+# what <- loadCache(key)
+# what
+# class(what)
+# typeof(what)
+```
+
+
+### Load Cached Data via `loadCache()`
+```{r}
+# loadCache(what)
+```
+
 
 ## Exercise
