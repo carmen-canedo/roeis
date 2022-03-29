@@ -81,10 +81,10 @@ It is worth pointing out that there are methods defined for this class of object
 
 For example:
 ```{r}
-#Check bits
+# Checking bits
 audio1$bit
 
-#Check rate
+# Checking rate
 audio1$rate
 ```
 
@@ -94,3 +94,13 @@ We can now play the audio. Pay attention to the pitch and the duration.
 play(audio1)
 ```
 
+As we indicated before, the length of the imputed vector determines the number of samples  used to create the audio. So if `x` was twice as long, we should have and audio that is twice as long as `audio1`.\
+
+We can test this. Let's create a second audio sample using the same arguments for everything but argument `x`. This time we will use a larger object. Our original sequence had 10,000 values, so let's change it to 20,000. Since the rate (number of samples taken per second) remains the same, the audio should last longer.\ 
+```{r}
+# Creating new audio sample
+audio2 <- audioSample(rep(sequence1,2), 10000, bits = 16, clip =FALSE)
+
+# Playing audio
+play(audio2)
+```
