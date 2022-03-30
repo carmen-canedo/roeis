@@ -19,13 +19,14 @@ knitr::opts_chunk$set(
 ```
 
 ## Objective
-As dictated in the [CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html), data used in CRAN packages should not surpass 5MB. The Online Encyclopedia of Integer Sequences (OEIS) database used in the `roeis` package is approximately 71MB when originally downlaoded and when compressed, approximately 28MB. Therefore, it is necessary to explore other options for loading and storing data in the `roeis` package. Caching and memoization provide an efficient means of avoiding having to run large, repetitive, and time-consuming code. 
+As dictated in the [CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html), data used in CRAN packages should not surpass 5MB. The Online Encyclopedia of Integer Sequences (OEIS) database used in the `roeis` package is approximately 71MB when originally downloaded and when compressed, approximately 28MB. Therefore, it is necessary to explore other options for loading and storing data in the `roeis` package. Caching and memoization provide an efficient means of avoiding having to run large, repetitive, and time-consuming code. 
 
 This vignette aims to explore caching and memoization via the `R.cache` package.
 
 ## What Are Caching and Memoization?
 
 ## `R.cache` Package
+
 Let's load the `R.cache` library.
 ```{r}
 library(R.cache)
@@ -33,9 +34,11 @@ library(R.cache)
 
 
 ### Overview
+
 [R.cache CRAN documentation](https://cran.r-project.org/web/packages/R.cache/index.html)
 
 ### Key Functions
+
 `R.cache` contains seven functions:
 
 * `addMemoization()`
@@ -55,12 +58,12 @@ In order to practice loading in a dataset that is larger than 5MB and caching it
 
 ### Download Data via `saveCache()`
 ```{r}
-# key <- read.csv("~/us-counties-2022.csv")
-# 
-# what <- loadCache(key)
-# what
-# class(what)
-# typeof(what)
+key <- read.csv("~/us-counties-2022.csv")
+
+what <- loadCache(key)
+what
+class(what)
+typeof(what)
 ```
 
 
